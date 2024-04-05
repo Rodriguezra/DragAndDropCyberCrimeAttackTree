@@ -1,6 +1,6 @@
 let cards = [];
-let Cyberlaws, FraudAndDevices, FraudAndComputers, Communication, Interception, UnlawfulAccess, Cybercrime;
-let CyberlawsImg, FraudAndDevicesImg, FraudAndComputersImg, CommunicationImg, pInterceptionImg, UnlawfulAccessImg, CybercrimeImg;
+let AttackTree, FraudAndDevices, FraudAndComputers, Communication, Interception, UnlawfulAccess, Cybercrime;
+let AttackTreeImg, FraudAndDevicesImg, FraudAndComputersImg, CommunicationImg, pInterceptionImg, UnlawfulAccessImg, CybercrimeImg;
 let center1, center2, center3, center4, center5;
 let screen = 0;
 let widthConstraint, heightConstraint;
@@ -21,7 +21,7 @@ function setCardsoffScreen() {
   FraudAndDevices.pos = { x: -100, y: -100 };
   UnlawfulAccess.pos = { x: -100, y: -100 };
   Interception.pos = { x: -100, y: -100 };
-  Cyberlaws.pos = { x: -300, y: -300 };
+  AttackTree.pos = { x: -300, y: -300 };
   if (screen === 0) {
     Cybercrime.pos = { x: width / 2, y: 160 + 95 };
   }
@@ -47,7 +47,7 @@ function mousePressed() {
       Communication.position = createVector(width / 2 - 60, height - (height / 3) + 95);
       Interception.position = createVector(width / 2 + 33, height - (height / 3) + 175);
       UnlawfulAccess.position = createVector(width / 2 + 110, height - (height / 3) + 95);
-      Cyberlaws.pos = { x: 190, y: 285 };
+      AttackTree.pos = { x: width/2, y: 250 };
       Cybercrime.pos = { x: width / 2, y: 160 + 95 };
     }
   }
@@ -154,7 +154,7 @@ function checkIfConfirm() {
 }
 
 function preload() {
-  CyberlawsImg = loadImage('assets/CyberLaws/1/Cyberlaws.png');
+  AttackTreeImg = loadImage('assets/AttackTree/1/Attacktree.png');
   FraudAndDevicesImg = loadImage('assets/CyberLaws/1/FraudAndDevices.png');
   FraudAndComputersImg = loadImage('assets/CyberLaws/1/FraudAndComputers.png');
   CommunicationImg = loadImage('assets/CyberLaws/1/Communication.png');
@@ -170,16 +170,16 @@ function setup() {
   ////////////////// GAME 1 //////////////////
   ////////////////////////////////////////////
 
-  center1 = createVector(545, 160);
+  center1 = createVector(95,215);
   center2 = createVector(545, 220);
   center3 = createVector(545, 285);
   center4 = createVector(545, 350);
   center5 = createVector(545, 415);
 
-  Cyberlaws = new Sprite(width / 2 - 80, 285);
-  Cyberlaws.addImage(CyberlawsImg);
-  Cyberlaws.collider = 'k';
-  CyberlawsImg.resize(300, 0);
+  AttackTree = new Sprite(width / 2 - 80, 285);
+  AttackTree.addImage(AttackTreeImg);
+  AttackTree.collider = 'k';
+  AttackTreeImg.resize(650, 0);
 
   cards = new Group();
   cards.collider = 'k';
@@ -225,7 +225,7 @@ function setup() {
   FraudAndDevices.pos = { x: -100, y: -100 };
   Interception.pos = { x: -100, y: -100 };
   UnlawfulAccess.pos = { x: -100, y: -100 };
-  Cyberlaws.pos = { x: -200, y: -200 };
+  AttackTree.pos = { x: -200, y: -200 };
   Cybercrime.pos = { x: -400, y: -400 };
 
   ////////////////////////////////////////////
@@ -277,9 +277,6 @@ function draw() {
     textAlign(CENTER, CENTER);
     text("Learn More", width - 80, height - 25);
 
-    fill(c);
-    rect(20, 100, 620, 370, 10);
-
     fill(255);
     rect(40, 120, 310, 330, 10);
 
@@ -300,28 +297,6 @@ function draw() {
     text("3", center3.x, center3.y + 2);
     text("4", center4.x, center4.y + 2);
     text("5", center5.x, center5.y + 2);
-
-    strokeWeight(5);
-    stroke(0);
-    line(365, center1.y, 440, center1.y);
-    line(430, center1.y - 10, 440, center1.y);
-    line(430, center1.y + 10, 440, center1.y);
-
-    line(365, center2.y, 440, center2.y);
-    line(430, center2.y - 10, 440, center2.y);
-    line(430, center2.y + 10, 440, center2.y);
-
-    line(365, center3.y, 440, center3.y);
-    line(430, center3.y - 10, 440, center3.y);
-    line(430, center3.y + 10, 440, center3.y);
-
-    line(365, center4.y, 440, center4.y);
-    line(430, center4.y - 10, 440, center4.y);
-    line(430, center4.y + 10, 440, center4.y);
-
-    line(365, center5.y, 440, center5.y);
-    line(430, center5.y - 10, 440, center5.y);
-    line(430, center5.y + 10, 440, center5.y);
 
     for (let card of cards) {
       handleDragging(card);

@@ -344,7 +344,7 @@ function showStartScreen() {
   fill(255); // White color
   textSize(32); // Font size
   textAlign(CENTER, CENTER); // Text alignment
-  text("Cybercrime Laws\n\n", width / 2, height / 2 - 200);
+  text("Attack Tree\n\n", width / 2, height / 2 - 200);
   
   // Instructions button
   fill(255);

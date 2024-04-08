@@ -1,6 +1,6 @@
 let cards = [];
-let AttackTree, FraudAndDevices, FraudAndComputers, Communication, Interception, UnlawfulAccess, Cybercrime;
-let AttackTreeImg, FraudAndDevicesImg, FraudAndComputersImg, CommunicationImg, pInterceptionImg, UnlawfulAccessImg, CybercrimeImg;
+let AttackTree, FraudAndDevices, FraudAndComputers, Communication, Interception, UnlawfulAccess, Cybercrime, winComp, loseComp;
+let AttackTreeImg, FraudAndDevicesImg, FraudAndComputersImg, CommunicationImg, pInterceptionImg, UnlawfulAccessImg, CybercrimeImg, winCompImg, loseCompImg;
 let center1, center2, center3, center4, center5;
 let screen = 0;
 let widthConstraint, heightConstraint;
@@ -28,6 +28,19 @@ function setCardsoffScreen() {
   else {
     Cybercrime.pos = { x: -100000, y: -200 };
   }
+  if (screen === 3) {
+    winComp.pos = { x: width / 2 + 10, y: 160 + 85 };
+  }
+  else {
+    winComp.pos = { x: -100000, y: -200 };
+  }
+  if (screen === 4) {
+    loseComp.pos = { x: width / 2, y: 160 + 85};
+  }
+  else {
+    loseComp.pos = { x: -100000, y: -200 };
+  }
+
 }
 
 function mousePressed() {
@@ -161,6 +174,8 @@ function preload() {
   InterceptionImg = loadImage('assets/CyberLaws/1/Interception.png');
   UnlawfulAccessImg = loadImage('assets/CyberLaws/1/UnlawfulAccess.png');
   CybercrimeImg = loadImage('assets/CyberLaws/1/Cybercrime.png');
+  winCompImg = loadImage('assets/AttackTree/lockedComputer.png');
+  loseCompImg = loadImage('assets/AttackTree/LoseComp.png')
 }
 
 function setup() {
@@ -180,6 +195,15 @@ function setup() {
   AttackTree.addImage(AttackTreeImg);
   AttackTree.collider = 'k';
   AttackTreeImg.resize(650, 0);
+
+  winComp = new Sprite(width / 2, 160 + 95);
+  winComp.addImage(winCompImg);
+  winComp.collider = 'k';
+
+
+  loseComp = new Sprite(width / 2, 160 + 95);
+  loseComp.addImage(loseCompImg);
+  loseComp.collider = 'k';
 
   cards = new Group();
   cards.collider = 'k';
@@ -227,6 +251,8 @@ function setup() {
   UnlawfulAccess.pos = { x: -100, y: -100 };
   AttackTree.pos = { x: -200, y: -200 };
   Cybercrime.pos = { x: -400, y: -400 };
+  winComp.pos = { x: -400, y: -400 };
+  loseComp.pos = { x: -400, y: -400 };
 
   ////////////////////////////////////////////
   ////////////////// GAME 2 //////////////////
@@ -261,7 +287,8 @@ function draw() {
     noStroke();
     fill(0);
     textAlign(CENTER, TOP); // Text alignment
-    text("The following image provided shows several US federal laws related to cybercrimes. Rearrange the list so that each law matches its correct description.", 30, 20, 600, 360);
+    text("This is an example of an attack tree where the objective is to disclose proprietary secrets of an organization that has two buildings with separate Local Area Networks (LANs). The root of the tree is the goal of the attack, while the leaves represent ways to achieve that goal. Complete the tree by ordering the answers to identify the missing attacks and what they lead to.\n"
+        , 30, 20, 600, 360);
 
     // Learn More Button Border
     stroke(255);
@@ -403,13 +430,19 @@ function showScreenWin() {
   fill(255, alphaValue);
   textSize(32);
   textAlign(CENTER, CENTER);
-  text("You Win!\n\nThanks for playing!", width / 2, height / 2 - 100);
+  text("You Win!\n\nThanks for playing!", width / 2, height / 2 - 200);
 
   //Animate alpha value for fading effect
   alphaValue += fadeSpeed;
   if (alphaValue > 255 || alphaValue < 0) {
     fadeSpeed *= -1; //Reverse the fade direction
   }
+
+  //display win image
+  let imgX = 650 / 2 - winComp.width / 2;
+  let imgY = height / 2 - winComp.height / 2 - 20;
+  image(winCompImg, imgX, imgY);
+
   //Restart button
   fill(255);
   rect(width / 2 - 50, height / 2 + 120, 100, 40, 10);
@@ -426,7 +459,7 @@ function showScreenLose() {
   fill(255, alphaValue);
   textSize(32);
   textAlign(CENTER, CENTER);
-  text("Not Quite!\n\nTry again?", width / 2, height / 2 - 100);
+  text("Not Quite!\n\nTry again?", width / 2, height / 2 - 230);
 
   //Animate alpha value for fading effect
   alphaValue += fadeSpeed;
@@ -434,7 +467,12 @@ function showScreenLose() {
     fadeSpeed *= -1; //Reverse the fade direction
   }
 
-  // Instructions button
+  //display lose image
+  let imgX = 650 / 2 - loseComp.width / 2;
+  let imgY = height / 2 - loseComp.height / 2 - 20;
+  image(loseCompImg, imgX, imgY);
+
+  //Instructions button
   fill(255);
   rect(width / 2 - 75, height / 2 + 120, 150, 40, 10);
   fill(0);

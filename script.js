@@ -1,6 +1,6 @@
 let cards = [];
-let AttackTree, FraudAndDevices, FraudAndComputers, Communication, Interception, UnlawfulAccess, Cybercrime, winComp, loseComp;
-let AttackTreeImg, FraudAndDevicesImg, FraudAndComputersImg, CommunicationImg, pInterceptionImg, UnlawfulAccessImg, CybercrimeImg, winCompImg, loseCompImg;
+let AttackTree, Badge, Building, LAN, Phish, PropSecrets, Cybercrime, winComp, loseComp;
+let AttackTreeImg, BadgeImg, BuildingImg, LANImg, PhishImg, PropSecretsImg, CybercrimeImg, winCompImg, loseCompImg;
 let center1, center2, center3, center4, center5;
 let screen = 0;
 let widthConstraint, heightConstraint;
@@ -16,11 +16,11 @@ let cancel = false;
 //lose = 4
 
 function setCardsoffScreen() {
-  Communication.pos = { x: -100, y: -100 };
-  FraudAndComputers.pos = { x: -100, y: -100 };
-  FraudAndDevices.pos = { x: -100, y: -100 };
-  UnlawfulAccess.pos = { x: -100, y: -100 };
-  Interception.pos = { x: -100, y: -100 };
+  LAN.pos = { x: -100, y: -100 };
+  Building.pos = { x: -100, y: -100 };
+  Badge.pos = { x: -100, y: -100 };
+  PropSecrets.pos = { x: -100, y: -100 };
+  Phish.pos = { x: -100, y: -100 };
   AttackTree.pos = { x: -300, y: -300 };
   if (screen === 0) {
     Cybercrime.pos = { x: width / 2, y: 160 + 95 };
@@ -55,23 +55,23 @@ function mousePressed() {
     //press begin button or restart button pressed
     if (mouseX > width / 2 - 50 && mouseX < width / 2 + 50 && mouseY > height / 2 + 120 && mouseY < height / 2 + 160) {
       screen = 2;
-      FraudAndDevices.position = createVector(width / 4 - 67, height - (height / 3) + 95);
-      FraudAndComputers.position = createVector(width / 2 - 145, height - (height / 3) + 175);
-      Communication.position = createVector(width / 2 - 60, height - (height / 3) + 95);
-      Interception.position = createVector(width / 2 + 33, height - (height / 3) + 175);
-      UnlawfulAccess.position = createVector(width / 2 + 110, height - (height / 3) + 95);
-      AttackTree.pos = { x: width/2, y: 250 };
+      Badge.position = createVector(width / 4 - 67, height - (height / 3) + 95);
+      Building.position = createVector(width / 2 - 140, height - (height / 3) + 155);
+      LAN.position = createVector(width / 2 - 40, height - (height / 3) + 95);
+      Phish.position = createVector(width / 2 + 53, height - (height / 3) + 155);
+      PropSecrets.position = createVector(width / 2 + 150, height - (height / 3) + 95);
+      AttackTree.pos = { x: width/2, y: 290 };
       Cybercrime.pos = { x: width / 2, y: 160 + 95 };
     }
   }
   else if (screen == 2 && confirm && !cancel) {
-    if (mouseX > width / 2 + 20 && mouseX < width / 2 + 140 && mouseY > height / 2 + 250 && mouseY < height / 2 + 290) {
+    if (mouseX > width / 2 + 20 && mouseX < width / 2 + 140 && mouseY > height / 2 + 210 && mouseY < height / 2 + 250) {
       if (
-        dist(FraudAndDevices.x, FraudAndDevices.y, center1.x, center1.y) < 1 &&
-        dist(FraudAndComputers.x, FraudAndComputers.y, center2.x, center2.y) < 1 &&
-        dist(Communication.x, Communication.y, center3.x, center3.y) < 1 &&
-        dist(Interception.x, Interception.y, center4.x, center4.y) < 1 &&
-        dist(UnlawfulAccess.x, UnlawfulAccess.y, center5.x, center5.y) < 1
+        dist(Badge.x, Badge.y, center1.x, center1.y) < 1 &&
+        dist(Phish.x, Phish.y, center2.x, center2.y) < 1 &&
+        dist(Building.x, Building.y, center3.x, center3.y) < 1 &&
+        dist(LAN.x, LAN.y, center4.x, center4.y) < 1 &&
+        dist(PropSecrets.x, PropSecrets.y, center5.x, center5.y) < 1
       ) {
         console.log("you win!");
         showScreenWin();
@@ -85,7 +85,7 @@ function mousePressed() {
         confirm = false;
       }
     }
-    else if (mouseX > width / 2 - 120 && mouseX < width / 2 && mouseY > height / 2 + 250 && mouseY < height / 2 + 290) {
+    else if (mouseX > width / 2 - 120 && mouseX < width / 2 && mouseY > height / 2 + 210 && mouseY < height / 2 + 250) {
       confirm = false;
       cancel = true;
     }
@@ -94,10 +94,10 @@ function mousePressed() {
   //If on the game screen
   if (screen === 2) {
     // Check if the "Learn More" button is clicked
-    if (mouseX > width - 150 && mouseX < width - 10 && mouseY > height - 45 && mouseY < height - 10) 
+    if (mouseX > width - 150 && mouseX < width - 10 && mouseY > height - 55 && mouseY < height - 20) 
     {
       // Display a link to a website for further learning
-      window.open('https://www.law.cornell.edu/uscode/text/18/part-I');
+      window.open('https://www.cisa.gov/sites/default/files/2023-01/MitigationsForVulnerabilitiesCSNetsISA_S508C.pdf');
     }
   }
 }
@@ -168,11 +168,11 @@ function checkIfConfirm() {
 
 function preload() {
   AttackTreeImg = loadImage('assets/AttackTree/1/Attacktree.png');
-  FraudAndDevicesImg = loadImage('assets/CyberLaws/1/FraudAndDevices.png');
-  FraudAndComputersImg = loadImage('assets/CyberLaws/1/FraudAndComputers.png');
-  CommunicationImg = loadImage('assets/CyberLaws/1/Communication.png');
-  InterceptionImg = loadImage('assets/CyberLaws/1/Interception.png');
-  UnlawfulAccessImg = loadImage('assets/CyberLaws/1/UnlawfulAccess.png');
+  BadgeImg = loadImage('assets/AttackTree/1/Badge.png');
+  BuildingImg = loadImage('assets/AttackTree/1/Building.png');
+  LANImg = loadImage('assets/AttackTree/1/LAN.png');
+  PhishImg = loadImage('assets/AttackTree/1/Phish.png');
+  PropSecretsImg = loadImage('assets/AttackTree/1/PropSecrets.png');
   CybercrimeImg = loadImage('assets/CyberLaws/1/Cybercrime.png');
   winCompImg = loadImage('assets/AttackTree/lockedComputer.png');
   loseCompImg = loadImage('assets/AttackTree/LoseComp.png')
@@ -185,13 +185,13 @@ function setup() {
   ////////////////// GAME 1 //////////////////
   ////////////////////////////////////////////
 
-  center1 = createVector(95,215);
-  center2 = createVector(545, 220);
-  center3 = createVector(545, 285);
-  center4 = createVector(545, 350);
-  center5 = createVector(545, 415);
+  center1 = createVector(553, 286);
+  center2 = createVector(553, 377);
+  center3 = createVector(315, 230);
+  center4 = createVector(315, 368);
+  center5 = createVector(98, 298);
 
-  AttackTree = new Sprite(width / 2 - 80, 285);
+  AttackTree = new Sprite(width / 2 - 80, 315);
   AttackTree.addImage(AttackTreeImg);
   AttackTree.collider = 'k';
   AttackTreeImg.resize(650, 0);
@@ -213,42 +213,42 @@ function setup() {
   Cybercrime.collider = 'k';
   CybercrimeImg.resize(200, 0);
 
-  FraudAndDevices = new cards.Sprite(width / 4 - 67, height - (height / 3) + 95);
-  FraudAndDevices.addImage(FraudAndDevicesImg);
-  FraudAndDevices.scale = 0.6;
-  cards[0] = FraudAndDevices;
-  FraudAndDevices.originalPosition = createVector(width / 4 - 67, height - (height / 3) + 95);
+  Badge = new cards.Sprite(width / 4 - 67, height - (height / 3) + 95);
+  Badge.addImage(BadgeImg);
+  Badge.scale = 0.4;
+  cards[0] = Badge;
+  Badge.originalPosition = createVector(width / 4 - 67, height - (height / 3) + 95);
 
-  FraudAndComputers = new cards.Sprite((width / 2 - 145), height - (height / 3) + 175);
-  FraudAndComputers.addImage(FraudAndComputersImg);
-  FraudAndComputers.scale = 0.6;
-  cards[1] = FraudAndComputers;
-  FraudAndComputers.originalPosition = createVector(width / 2 - 145, height - (height / 3) + 175);
+  Building = new cards.Sprite((width / 2 - 140), height - (height / 3) + 155);
+  Building.addImage(BuildingImg);
+  Building.scale = 0.4;
+  cards[1] = Building;
+  Building.originalPosition = createVector(width / 2 - 140, height - (height / 3) + 155);
 
-  Communication = new cards.Sprite(width / 2 - 60, height - (height / 3) + 95);
-  Communication.addImage(CommunicationImg);
-  Communication.scale = 0.6;
-  cards[2] = Communication;
-  Communication.originalPosition = createVector(width / 2 - 60, height - (height / 3) + 95);
+  LAN = new cards.Sprite(width / 2 - 40, height - (height / 3) + 95);
+  LAN.addImage(LANImg);
+  LAN.scale = 0.4;
+  cards[2] = LAN;
+  LAN.originalPosition = createVector(width / 2 - 40, height - (height / 3) + 95);
 
-  Interception = new cards.Sprite(width / 2 + 33, height - (height / 3) + 175);
-  Interception.addImage(InterceptionImg);
-  Interception.scale = 0.6;
-  cards[3] = Interception;
-  Interception.originalPosition = createVector(width / 2 + 33, height - (height / 3) + 175);
+  Phish = new cards.Sprite(width / 2 + 53, height - (height / 3) + 155);
+  Phish.addImage(PhishImg);
+  Phish.scale = 0.4;
+  cards[3] = Phish;
+  Phish.originalPosition = createVector(width / 2 + 53, height - (height / 3) + 155);
 
-  UnlawfulAccess = new cards.Sprite(width / 2 + 110, height - (height / 3) + 95);
-  UnlawfulAccess.addImage(UnlawfulAccessImg);
-  UnlawfulAccess.scale = 0.6;
-  cards[4] = UnlawfulAccess;
-  UnlawfulAccess.originalPosition = createVector(width / 2 + 110, height - (height / 3) + 95);
+  PropSecrets = new cards.Sprite(width / 2 + 150, height - (height / 3) + 95);
+  PropSecrets.addImage(PropSecretsImg);
+  PropSecrets.scale = 0.4;
+  cards[4] = PropSecrets;
+  PropSecrets.originalPosition = createVector(width / 2 + 150, height - (height / 3) + 95);
 
 
-  Communication.pos = { x: -100, y: -100 };
-  FraudAndComputers.pos = { x: -100, y: -100 };
-  FraudAndDevices.pos = { x: -100, y: -100 };
-  Interception.pos = { x: -100, y: -100 };
-  UnlawfulAccess.pos = { x: -100, y: -100 };
+  LAN.pos = { x: -100, y: -100 };
+  Building.pos = { x: -100, y: -100 };
+  Badge.pos = { x: -100, y: -100 };
+  Phish.pos = { x: -100, y: -100 };
+  PropSecrets.pos = { x: -100, y: -100 };
   AttackTree.pos = { x: -200, y: -200 };
   Cybercrime.pos = { x: -400, y: -400 };
   winComp.pos = { x: -400, y: -400 };
@@ -278,10 +278,12 @@ function draw() {
     // Define the text content
     // Set text properties
     const c = color(0, 179, 115);
-    stroke(0);
+    background(c);
+    noStroke();
     strokeWeight(1);
     fill(255);
     rect(20, 10, 620, 74, 10);
+    rect(0, 120, 650, 340, 10);
     // Display text content
     textSize(12);
     noStroke();
@@ -294,18 +296,15 @@ function draw() {
     stroke(255);
     strokeWeight(2);
     fill(255);
-    rect(width - 150, height - 45, 140, 40, 10);
+    //rect(width - 150, height - 45, 140, 40, 10);
     // Learn More Button
     noStroke();
-    fill(c);
-    rect(width - 150 + 1, height - 45 + 1, 138, 38, 10);       // Learn More Button Text
     fill(255);
+    rect(width - 150 + 1, height - 54, 138, 38, 10);       // Learn More Button Text
+    fill(0);
     textSize(16);
     textAlign(CENTER, CENTER);
-    text("Learn More", width - 80, height - 25);
-
-    fill(255);
-    rect(40, 120, 310, 330, 10);
+    text("Learn More", width - 80, height - 35);
 
     fill(255);
     noStroke();
@@ -335,22 +334,23 @@ function draw() {
   //Check if we win!!!
   if (confirm && !cancel) {
     const c = color(0, 179, 115);
-    fill(c);
-    noStroke();
-    rect((width / 2) - 140, height / 2 + 205, 300, 100, 10);
     fill(255);
+    noStroke();
+    rect((width / 2) - 140, height / 2 + 165, 300, 100, 10);
+    fill(0);
     textSize(20);
     textAlign(LEFT);
-    text('Submit Answer?', width / 2 - 60, height - 80);
+    text('Submit Answer?', width / 2 - 60, height - 120);
+    fill(c);
+    rect(width / 2 + 20, height / 2 + 210, 120, 40, 10);
     fill(255);
-    rect(width / 2 + 20, height / 2 + 250, 120, 40, 10);
-    fill(0);
     textSize(17);
-    text("Submit", width / 2 + 52, height / 2 + 272);
+    text("Submit", width / 2 + 52, height / 2 + 232);
+    const r = color(195, 16, 16);
+    fill(r);
+    rect(width / 2 - 120, height / 2 + 210, 120, 40, 10);
     fill(255);
-    rect(width / 2 - 120, height / 2 + 250, 120, 40, 10);
-    fill(0);
-    text("Cancel", width / 2 - 90, height / 2 + 272);
+    text("Cancel", width / 2 - 90, height / 2 + 232);
   }
 
   else if (screen === 3) {
@@ -372,7 +372,7 @@ function showStartScreen() {
   textSize(32); // Font size
   textAlign(CENTER, CENTER); // Text alignment
   text("Attack Tree\n\n", width / 2, height / 2 - 200);
-  
+
   // Instructions button
   fill(255);
   noStroke();
@@ -426,6 +426,9 @@ function showScreenWin() {
   const c = color(0, 179, 115);
   background(c);
 
+  fill(255);
+  rect(width / 2 - 175, height / 2 - 133, 350, 230, 10);
+
   //Set text properties
   fill(255, alphaValue);
   textSize(32);
@@ -453,8 +456,12 @@ function showScreenWin() {
 
 function showScreenLose() {
   setCardsoffScreen();
-  background("red");
+  const r = color(195, 16, 16);
+  background(r);
 
+  fill(255);
+  rect(width / 2 - 175, height / 2 - 130, 350, 230, 10);
+  
   //Set text properties
   fill(255, alphaValue);
   textSize(32);

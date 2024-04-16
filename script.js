@@ -217,31 +217,31 @@ function setup() {
   Badge.addImage(BadgeImg);
   Badge.scale = 0.4;
   cards[0] = Badge;
-  Badge.originalPosition = createVector(width / 4 - 67, height - (height / 3) + 95);
+  Badge.originalPosition = createVector(width / 4 - 40, height - (height / 3) + 80);
 
   Building = new cards.Sprite((width / 2 - 140), height - (height / 3) + 155);
   Building.addImage(BuildingImg);
   Building.scale = 0.4;
   cards[1] = Building;
-  Building.originalPosition = createVector(width / 2 - 140, height - (height / 3) + 155);
+  Building.originalPosition = createVector(width / 2 - 195, height - (height / 3) + 170);
 
   LAN = new cards.Sprite(width / 2 - 40, height - (height / 3) + 95);
   LAN.addImage(LANImg);
   LAN.scale = 0.4;
   cards[2] = LAN;
-  LAN.originalPosition = createVector(width / 2 - 40, height - (height / 3) + 95);
+  LAN.originalPosition = createVector(width / 2 - 40, height - (height / 3) + 125);
 
   Phish = new cards.Sprite(width / 2 + 53, height - (height / 3) + 155);
   Phish.addImage(PhishImg);
   Phish.scale = 0.4;
   cards[3] = Phish;
-  Phish.originalPosition = createVector(width / 2 + 53, height - (height / 3) + 155);
+  Phish.originalPosition = createVector(width / 2 + 53, height - (height / 3) + 170);
 
   PropSecrets = new cards.Sprite(width / 2 + 150, height - (height / 3) + 95);
   PropSecrets.addImage(PropSecretsImg);
   PropSecrets.scale = 0.4;
   cards[4] = PropSecrets;
-  PropSecrets.originalPosition = createVector(width / 2 + 150, height - (height / 3) + 95);
+  PropSecrets.originalPosition = createVector(width / 2 + 150, height - (height / 3) + 80);
 
 
   LAN.pos = { x: -100, y: -100 };

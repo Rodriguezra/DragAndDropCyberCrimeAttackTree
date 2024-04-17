@@ -194,7 +194,8 @@ function setup() {
   AttackTree = new Sprite(width / 2 - 80, 315);
   AttackTree.addImage(AttackTreeImg);
   AttackTree.collider = 'k';
-  AttackTreeImg.resize(650, 0);
+  AttackTree.scale = .39;
+  //AttackTreeImg.resize(650, 0);
 
   winComp = new Sprite(width / 2, 160 + 95);
   winComp.addImage(winCompImg);

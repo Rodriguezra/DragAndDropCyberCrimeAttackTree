@@ -59,7 +59,7 @@ function setCardsoffScreen() { //moves images based on which screen is displayed
 }
 
 function mousePressed() {
-  
+
   if (screen === 0) { //on the start screen
     if (mouseX > width / 2 - 100 && mouseX < width / 2 + 100 && mouseY > height - 120 && mouseY < height - 80) {
       buttonPress.play();
@@ -314,7 +314,7 @@ function draw() {
   // Set up the screen
   clear();
   background("white");
-  
+
   if (screen === 0) {
     showStartScreen();
   }
@@ -322,8 +322,6 @@ function draw() {
     showInstructionScreen();
   }
   else if (screen === 2) {
-    // Define the text content
-    // Set text properties
     playOnce = true;
     const c = color(48, 116, 180);
     background(c);
@@ -334,6 +332,8 @@ function draw() {
     image(ChipImg, imgX, imgY);
     scale(1 / (.00016 * width));
 
+    // Define the text content
+    // Set text properties
     noStroke();
     strokeWeight(1);
     fill(255);
@@ -353,11 +353,10 @@ function draw() {
     stroke(255);
     strokeWeight(2);
     fill(255);
-    //rect(width - 150, height - 45, 140, 40, 10);
     // Learn More Button
     noStroke();
     fill(255);
-    rect(width - 150 + 1, height - 54, 138, 38, 10);      
+    rect(width - 150 + 1, height - 54, 138, 38, 10);
     fill(0);
     textSize(16);
     textAlign(CENTER, CENTER);
@@ -428,6 +427,8 @@ function windowResized() { //Adjusts size of canvas and screen elements based on
   center3 = createVector(width * .49, height * .371);
   center4 = createVector(width * .49, height * .635);
   center5 = createVector(width * .3025, height * .502);
+  canvas.position(0, 0);
+  canvas.style('z-index', '1');
 }
 
 function showStartScreen() {
@@ -447,7 +448,7 @@ function showStartScreen() {
   rectMode(CORNER);
 
   // Set text properties
-  fill(0); // White color
+  fill(0); // Black color
   textSize(60);
   textFont(font);
   textAlign(CENTER, CENTER); // Text alignment
@@ -483,7 +484,7 @@ function showInstructionScreen() {
 
   const c = color(48, 116, 180);
   // Set text properties
-  fill(c); // Black color
+  fill(c); // Blue color
   textSize(32); // Font size
   textAlign(CENTER, CENTER); // Text alignment
   text("Instructions\n\n", width / 2, height * .36);
@@ -513,19 +514,18 @@ function showInstructionScreen() {
 }
 
 function showScreenWin() {
-  // Move extra icons off screen when win page is up
   if (playOnce) {
     gameMusic.stop();
     winJingle.loop();
   }
   playOnce = false;
+  // Move extra icons off screen when win page is up
   setCardsoffScreen();
   const c = color(0, 179, 115);
   background(c);
 
   let imgX = 0;
   let imgY = 0;
-  //ChipImg.resize(width, height * 1.233);
   scale(.00016 * width);
   image(ChipImg, imgX, imgY);
   scale(1 / (.00016 * width));
@@ -568,7 +568,6 @@ function showScreenLose() {
 
   let imgX = 0;
   let imgY = 0;
-  //ChipImg.resize(width, height * 1.233);
   scale(.00016 * width);
   image(ChipImg, imgX, imgY);
   scale(1 / (.00016 * width));
@@ -590,7 +589,7 @@ function showScreenLose() {
     fadeSpeed *= -1; //Reverse the fade direction
   }
 
-  //Instructions button
+  //Restart button
   fill(255);
   rect(width / 2 - 100, height - 120, 200, 40, 10);
   fill(0);

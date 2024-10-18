@@ -344,13 +344,13 @@ function draw() {
     // center image rectangle
     fill(255);
     rectMode(CENTER);
-    rect(width / 2, height / 2 - 20, width / 1.7, height / 1.7, 10);
+    rect(width / 2, height / 2 - 10, width / 1.5, height / 1.7, 10);
 
     // game text
     noStroke();
     strokeWeight(1);
     rectMode(CENTER);
-    rect(width / 2, 70, 1000, 120, 10);
+    rect(width / 2, 90, 1000, 150, 10);
 
     // Display text content
     textSize(18);
@@ -358,7 +358,7 @@ function draw() {
     fill(0);
     textAlign(CENTER, TOP); // Text alignment
     text("This is an example of an attack tree where the objective is to disclose proprietary secrets of an organization that has two buildings with separate Local Area Networks (LANs).\n\nThe root of the tree is the goal of the attack, while the leaves represent ways to achieve that goal.\nComplete the tree by ordering the answers to identify the missing attacks and what they lead to.\n"
-      , width / 2 - 500, 20, 1000, 360);
+      , width / 2, 20, 1000, 360);
 
     // Learn More Button Border
     stroke(255);
@@ -506,7 +506,7 @@ function showInstructionScreen() {
   fill(c); // Blue color
   textSize(32); // Font size
   textAlign(CENTER, CENTER); // Text alignment
-  text("Play", width / 2, height / 5);
+  text("Instructions", width / 2, height / 2 + 20);
 
   // Begin button
   fill(0);

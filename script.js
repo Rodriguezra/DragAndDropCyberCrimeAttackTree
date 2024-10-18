@@ -415,7 +415,6 @@ function draw() {
 }
 
 function windowResized() { //Adjusts size of canvas and screen elements based on screen size 
-    /*
   resizeCanvas(windowWidth, windowHeight);
   AttackTree.scale = .00035 * width;
   AttackTree.pos = { x: width / 2, y: height / 2 - 10 };
@@ -434,26 +433,28 @@ function windowResized() { //Adjusts size of canvas and screen elements based on
   center3 = createVector(width * .49, height * .371);
   center4 = createVector(width * .49, height * .635);
   center5 = createVector(width * .3025, height * .502);
-  */
 }
 
 function showStartScreen() {
+
+  // set background
   setCardsoffScreen();
   const c = color(48, 116, 180);
   background(c);
 
-  // load image
+  // load background image
   let imgX = 0;
   let imgY = 0;
   scale(.00016 * width);
   image(ChipImg, imgX, imgY);
   scale(1 / (.00016 * width));
 
+  // back of center image
   rectMode(CENTER);
   fill(255);
   rect(width / 2, height / 2, width * .21, height * .5, 10);
 
-  // tilte text
+  // title text
   fill(255);
   rect(width / 2, height / 8, 700, height / 10, 10);
 
@@ -475,10 +476,11 @@ function showStartScreen() {
 
 
 function showInstructionScreen() {
+  // set background
   setCardsoffScreen();
   background("white");
 
-  // load image
+  // load background image
   let imgX = 0;
   let imgY = 0;
   scale(.00016 * width);
@@ -487,8 +489,9 @@ function showInstructionScreen() {
 
   // title text
   fill(0);
+  textFont(font);
   rectMode(CENTER);
-  rect(width / 2, height / 3.25, 600, height / 10, 10);
+  rect(width / 2, height / 4, 600, height / 10, 10);
 
   const c = color(48, 116, 180);
 
@@ -496,7 +499,7 @@ function showInstructionScreen() {
   fill(c); // Blue color
   textSize(32); // Font size
   textAlign(CENTER, CENTER); // Text alignment
-  text("Instructions", width / 2, height / 3.25);
+  text("Instructions", width / 2, height / 4);
 
   // Begin button
   fill(0);
@@ -506,9 +509,9 @@ function showInstructionScreen() {
   textSize(20);
   text("Begin", width / 2, height - 100);
 
-
+  // instructions text
   textSize(18); // Adjusted font size
-  textAlign(CENTER, TOP); // Adjusted text alignment
+  textAlign(CENTER, CENTER); // Adjusted text alignment
 
   // Additional text
   fill(color(0));

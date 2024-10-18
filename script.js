@@ -458,7 +458,7 @@ function showStartScreen() {
   textSize(60);
   textFont(font);
   textAlign(CENTER, CENTER); // Text alignment
-  text("Attack Tree", width / 2, height / 4.5);
+  text("Attack Tree", width / 2, height / 8);
 
   // Instructions button
   fill(255);
@@ -493,7 +493,7 @@ function showInstructionScreen() {
   fill(c); // Blue color
   textSize(32); // Font size
   textAlign(CENTER, CENTER); // Text alignment
-  text("Instructions", width / 2, height * .36);
+  text("Instructions", width / 2, height / 3.25);
 
   // Begin button
   fill(0);
@@ -508,6 +508,7 @@ function showInstructionScreen() {
 
   // Additional text
   fill(color(0));
+  textfont(font2); // change font
   let textX = width / 2 - 280; // X position for the additional text
   let textY = height / 2 - 60; // Starting Y position for the additional text
   let textLeading = 24; // Line spacing

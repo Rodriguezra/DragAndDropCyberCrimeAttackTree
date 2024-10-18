@@ -442,17 +442,21 @@ function showStartScreen() {
   const c = color(48, 116, 180);
   background(c);
 
+  // load image
   let imgX = 0;
   let imgY = 0;
   scale(.00016 * width);
   image(ChipImg, imgX, imgY);
   scale(1 / (.00016 * width));
 
-  fill(255);
   rectMode(CENTER);
+  fill(255);
+  rect(width / 2, height / 2, width * .21, height * .5, 10);
+
+  // tilte text
+  fill(255);
   rect(width / 2, height / 8, 700, height / 10, 10);
 
-  // Set text properties
   fill(0); // Black color
   textSize(60);
   textFont(font);
@@ -463,12 +467,10 @@ function showStartScreen() {
   fill(255);
   noStroke();
   rect(width / 2, height - 100, 200, 40, 10);
+
   fill(0);
   textSize(20);
   text("Instructions", width / 2, height - 100);
-
-  fill(255);
-  rect(width / 2, height / 2, width * .21, height * .5, 10);
 }
 
 
@@ -476,17 +478,20 @@ function showInstructionScreen() {
   setCardsoffScreen();
   background("white");
 
+  // load image
   let imgX = 0;
   let imgY = 0;
   scale(.00016 * width);
   image(ChipImg, imgX, imgY);
   scale(1 / (.00016 * width));
 
+  // title text
   fill(0);
   rectMode(CENTER);
   rect(width / 2, height / 3.25, 600, height / 10, 10);
 
   const c = color(48, 116, 180);
+
   // Set text properties
   fill(c); // Blue color
   textSize(32); // Font size
@@ -496,6 +501,7 @@ function showInstructionScreen() {
   // Begin button
   fill(0);
   rect(width / 2, height - 100, 200, 40, 10);
+
   fill(255);
   textSize(20);
   text("Begin", width / 2, height - 100);
@@ -506,9 +512,9 @@ function showInstructionScreen() {
 
   // Additional text
   fill(color(0));
-  //textfont(font2); // change font
-  let textX = width / 2 - 280; // X position for the additional text
-  let textY = height / 2 - 60; // Starting Y position for the additional text
+  textFont(font2); // change font
+  let textX = width / 2; // X position for the additional text
+  let textY = height / 2; // Starting Y position for the additional text
   let textLeading = 24; // Line spacing
   let textWidth = 575; // Width of the text block
   let additionalText = "Your objective is to correctly place each card into its designated slot.\nTo play, click and hold on a card, then drag it to the numbered slot where you think it belongs.\nRelease the mouse to drop the card into place.\n\nRemember, each card has a specific slot it must occupy.\nWhen all cards have been placed, you'll see an option to check your answers.\nIf you're correct, you'll have the option to play again.";

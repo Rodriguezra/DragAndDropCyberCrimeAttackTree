@@ -322,7 +322,8 @@ function draw() {
   background("white");
 
   if (screen === 0) {
-    showStartScreen();
+      showStartScreen();
+      gameMusic.loop();
   }
   else if (screen === 1) {
     showInstructionScreen();
@@ -350,7 +351,7 @@ function draw() {
     noStroke();
     strokeWeight(1);
     rectMode(CENTER);
-    rect(width / 2, 85, 1000, 150, 10);
+    rect(width / 2, 85, 900, 150, 10);
 
     // Display text content
     textSize(18);
@@ -358,7 +359,7 @@ function draw() {
     fill(0);
     textAlign(CENTER, CENTER); // Text alignment
     text("This is an example of an attack tree where the objective is to disclose proprietary secrets of an organization that has two buildings with separate Local Area Networks (LANs).\n\nThe root of the tree is the goal of the attack, while the leaves represent ways to achieve that goal.\n\nComplete the tree by ordering the answers to identify the missing attacks and what they lead to.\n"
-      , width / 2, 85, 1000, 360);
+      , width / 2, 90, 900, 360);
 
     // Learn More Button Border
     stroke(255);
@@ -389,25 +390,37 @@ function draw() {
     }
   }
 
+  // if all blanks are filled, ask to submit
   checkIfConfirm();
+
   //Check if we win!!!
   if (confirm && !cancel) {
+
+    // submit back text
+    rectMode(CORNER)
     const c = color(0, 179, 115);
     fill(255);
     noStroke();
     rect(width / 2 - 140, height - 130, 300, 110, 10);
+
     fill(0);
     textSize(20);
     textAlign(LEFT);
     text('Submit Answer?', width / 2 - 95, height - 105);
+
+    // submit button
     fill(c);
     rect(width / 2 + 20, height - 80, 120, 40, 10);
+
     fill(255);
     textSize(17);
     text("Submit", width / 2 + 42, height - 60);
+
+    // cancel button
     const r = color(195, 16, 16);
     fill(r);
     rect(width / 2 - 120, height - 80, 120, 40, 10);
+
     fill(255);
     text("Cancel", width / 2 - 105, height - 60);
   }
@@ -498,7 +511,7 @@ function showInstructionScreen() {
   fill(0);
   textFont(font);
   rectMode(CENTER);
-  rect(width / 2, height / 5, 600, height / 10, 10);
+  rect(width / 2, height / 4, 600, height / 10, 10);
 
   const c = color(48, 116, 180);
 
@@ -506,7 +519,7 @@ function showInstructionScreen() {
   fill(c); // Blue color
   textSize(32); // Font size
   textAlign(CENTER, CENTER); // Text alignment
-  text("Instructions", width / 2, height / 5);
+  text("Instructions", width / 2, height / 4);
 
   // Begin button
   fill(0);
@@ -523,7 +536,7 @@ function showInstructionScreen() {
   fill(color(0));
   textFont(font2); // change font
   let textX = width / 2; // X position for the additional text
-  let textY = height / 2 + 20; // Starting Y position for the additional text
+  let textY = height / 2 + 50; // Starting Y position for the additional text
   let textLeading = 24; // Line spacing
   let textWidth = 550; // Width of the text block
   let additionalText = "Your objective is to correctly place each card into its designated slot.\n\nTo play, click and hold on a card, then drag it to the numbered slot where you think it belongs.\nRelease the mouse to drop the card into place.\n\nRemember, each card has a specific slot it must occupy.\nWhen all cards have been placed, you'll see an option to check your answers.\n\nIf you're correct, you'll have the option to play again.";
@@ -536,7 +549,7 @@ function showInstructionScreen() {
 function showScreenWin() {
   if (playOnce) {
     gameMusic.stop();
-    winJingle.loop();
+    winJingle.play();
   }
   playOnce = false;
   // Move extra icons off screen when win page is up
@@ -551,11 +564,14 @@ function showScreenWin() {
   scale(1 / (.00016 * width));
 
   fill(255);
+  rectMode(CORNER);
   rect(width * .33, height * .33, width * .35, height * .48, 10);
 
-  //Set text properties
+  // win title text
   fill(255, alphaValue);
-  rect(width * .34, height * .1, width * .33, height * .2, 10);
+  rectMode(CENTER);
+  rect(width / 2, height * .2, width * .33, height * .2, 10);
+
   fill(0, alphaValue);
   textSize(32);
   textAlign(CENTER, CENTER);
@@ -563,13 +579,13 @@ function showScreenWin() {
 
   //Animate alpha value for fading effect
   alphaValue += fadeSpeed;
-  if (alphaValue > 255 || alphaValue < 0) {
+  if (alphaValue > 255 || alphaValue < 25) {
     fadeSpeed *= -1; //Reverse the fade direction
   }
 
   //Restart button
   fill(255);
-  rect(width / 2 - 100, height - 120, 200, 40, 10);
+  rect(width / 2, height - 100, 200, 40, 10);
   fill(0);
   textSize(20);
   text("Restart", width / 2, height - 100);
@@ -582,10 +598,12 @@ function showScreenWin() {
 }
 
 function showScreenLose() {
+  // set background
   setCardsoffScreen();
   const r = color(195, 16, 16);
   background(r);
 
+  // load background image
   let imgX = 0;
   let imgY = 0;
   scale(.00016 * width);
@@ -593,11 +611,14 @@ function showScreenLose() {
   scale(1 / (.00016 * width));
 
   fill(255);
+  rectMode(CORNER);
   rect(width * .33, height * .33, width * .35, height * .48, 10);
 
-  //Set text properties
+  //Set title text
   fill(255, alphaValue);
-  rect(width * .4, height * .1, width * .2, height * .2, 10);
+  rectMode(CENTER);
+  rect(width / 2, height * .2, width * .2, height * .2, 10);
+
   fill(0, alphaValue);
   textSize(32);
   textAlign(CENTER, CENTER);
@@ -605,13 +626,14 @@ function showScreenLose() {
 
   //Animate alpha value for fading effect
   alphaValue += fadeSpeed;
-  if (alphaValue > 255 || alphaValue < 0) {
+  if (alphaValue > 255 || alphaValue < 25) {
     fadeSpeed *= -1; //Reverse the fade direction
   }
 
   //Restart button
   fill(255);
-  rect(width / 2 - 100, height - 120, 200, 40, 10);
+  rect(width / 2, height - 100, 200, 40, 10);
+
   fill(0);
   textSize(20);
   text("Restart", width / 2, height - 100);

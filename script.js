@@ -451,7 +451,6 @@ function showStartScreen() {
   fill(255);
   rectMode(CENTER);
   rect(width / 2, height / 8, 700, height / 10, 10);
-  rectMode(CORNER);
 
   // Set text properties
   fill(0); // Black color
@@ -463,12 +462,13 @@ function showStartScreen() {
   // Instructions button
   fill(255);
   noStroke();
-  rect(width / 2 - 100, height - 120, 200, 40, 10);
+  rect(width / 2, height - 100, 200, 40, 10);
   fill(0);
   textSize(20);
   text("Instructions", width / 2, height - 100);
 
-  fill(255);
+  fill(200);
+  rectMode(CORNER);
   rect(width * .395, height * .25, width * .21, height * .5, 10);
 }
 
@@ -486,7 +486,6 @@ function showInstructionScreen() {
   fill(0);
   rectMode(CENTER);
   rect(width / 2, height / 3.25, 600, height / 10, 10);
-  rectMode(CORNER);
 
   const c = color(48, 116, 180);
   // Set text properties
@@ -497,7 +496,7 @@ function showInstructionScreen() {
 
   // Begin button
   fill(0);
-  rect(width / 2 - 100, height - 120, 200, 40, 10);
+  rect(width / 2, height - 100, 200, 40, 10);
   fill(255);
   textSize(20);
   text("Begin", width / 2, height - 100);

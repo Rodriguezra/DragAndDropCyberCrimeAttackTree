@@ -323,7 +323,6 @@ function draw() {
 
   if (screen === 0) {
       showStartScreen();
-      gameMusic.loop();
   }
   else if (screen === 1) {
     showInstructionScreen();
@@ -458,7 +457,6 @@ function windowResized() { //Adjusts size of canvas and screen elements based on
 }
 
 function showStartScreen() {
-
   // set background
   setCardsoffScreen();
   const c = color(48, 116, 180);
@@ -550,25 +548,30 @@ function showInstructionScreen() {
 }
 
 function showScreenWin() {
-  if (playOnce) {
-    gameMusic.stop();
-    winJingle.play();
-  }
-  playOnce = false;
-  // Move extra icons off screen when win page is up
+  gameMusic.stop();
+  winJingle.play();
+
+  // set background
   setCardsoffScreen();
   const c = color(0, 179, 115);
   background(c);
 
+  // load background image
   let imgX = 0;
   let imgY = 0;
   scale(.00016 * width);
   image(ChipImg, imgX, imgY);
   scale(1 / (.00016 * width));
 
+  //display win image
   fill(255);
   rectMode(CORNER);
   rect(width * .33, height * .33, width * .35, height * .48, 10);
+
+  let imgX2 = winComp.width + 14;
+  let imgY2 = winComp.height - 55;
+  scale(.00095 * width);
+  image(winCompImg, imgX2, imgY2);
 
   // win title text
   fill(255, alphaValue);
@@ -583,22 +586,17 @@ function showScreenWin() {
 
   //Animate alpha value for fading effect
   alphaValue += fadeSpeed;
-  if (alphaValue >= 255 || alphaValue <= 125) {
+  if (alphaValue >= 255 || alphaValue <= 140) {
     fadeSpeed *= -1; //Reverse the fade direction
   }
 
   //Restart button
   fill(255);
   rect(width / 2, height - 100, 200, 40, 10);
+
   fill(0);
   textSize(20);
   text("Restart", width / 2, height - 100);
-
-  //display win image
-  let imgX2 = winComp.width + 14;
-  let imgY2 = winComp.height - 55;
-  scale(.00095 * width);
-  image(winCompImg, imgX2, imgY2);
 }
 
 function showScreenLose() {
@@ -614,9 +612,15 @@ function showScreenLose() {
   image(ChipImg, imgX, imgY);
   scale(1 / (.00016 * width));
 
+  //display lose image
   fill(255);
   rectMode(CORNER);
   rect(width * .33, height * .33, width * .35, height * .48, 10);
+
+  let imgX2 = loseComp.width + 20;
+  let imgY2 = loseComp.height - 20;
+  scale(.001 * width);
+  image(loseCompImg, imgX2, imgY2);
 
   //Set title text
   fill(255, alphaValue);
@@ -631,7 +635,7 @@ function showScreenLose() {
 
   //Animate alpha value for fading effect
   alphaValue += fadeSpeed;
-  if (alphaValue >= 255 || alphaValue <= 125) {
+  if (alphaValue >= 255 || alphaValue <= 140) {
     fadeSpeed *= -1; //Reverse the fade direction
   }
 
@@ -642,10 +646,4 @@ function showScreenLose() {
   fill(0);
   textSize(20);
   text("Restart", width / 2, height - 100);
-
-  //display lose image
-  let imgX2 = loseComp.width + 20;
-  let imgY2 = loseComp.height - 20;
-  scale(.001 * width);
-  image(loseCompImg, imgX2, imgY2);
 }

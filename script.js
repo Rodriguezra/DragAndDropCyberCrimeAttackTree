@@ -350,15 +350,15 @@ function draw() {
     noStroke();
     strokeWeight(1);
     rectMode(CENTER);
-    rect(width / 2, 90, 1000, 150, 10);
+    rect(width / 2, 85, 1000, 150, 10);
 
     // Display text content
     textSize(18);
     noStroke();
     fill(0);
-    textAlign(CENTER, TOP); // Text alignment
-    text("This is an example of an attack tree where the objective is to disclose proprietary secrets of an organization that has two buildings with separate Local Area Networks (LANs).\n\nThe root of the tree is the goal of the attack, while the leaves represent ways to achieve that goal.\nComplete the tree by ordering the answers to identify the missing attacks and what they lead to.\n"
-      , width / 2, 20, 1000, 360);
+    textAlign(CENTER, CENTER); // Text alignment
+    text("This is an example of an attack tree where the objective is to disclose proprietary secrets of an organization that has two buildings with separate Local Area Networks (LANs).\n\nThe root of the tree is the goal of the attack, while the leaves represent ways to achieve that goal.\n\nComplete the tree by ordering the answers to identify the missing attacks and what they lead to.\n"
+      , width / 2, 85, 1000, 360);
 
     // Learn More Button Border
     stroke(255);
@@ -506,7 +506,7 @@ function showInstructionScreen() {
   fill(c); // Blue color
   textSize(32); // Font size
   textAlign(CENTER, CENTER); // Text alignment
-  text("Instructions", width / 2, height / 2 + 20);
+  text("Instructions", width / 2, height / 5);
 
   // Begin button
   fill(0);
@@ -523,7 +523,7 @@ function showInstructionScreen() {
   fill(color(0));
   textFont(font2); // change font
   let textX = width / 2; // X position for the additional text
-  let textY = height / 3; // Starting Y position for the additional text
+  let textY = height / 2 + 20; // Starting Y position for the additional text
   let textLeading = 24; // Line spacing
   let textWidth = 550; // Width of the text block
   let additionalText = "Your objective is to correctly place each card into its designated slot.\n\nTo play, click and hold on a card, then drag it to the numbered slot where you think it belongs.\nRelease the mouse to drop the card into place.\n\nRemember, each card has a specific slot it must occupy.\nWhen all cards have been placed, you'll see an option to check your answers.\n\nIf you're correct, you'll have the option to play again.";

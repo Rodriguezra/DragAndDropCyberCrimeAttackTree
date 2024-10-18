@@ -13,8 +13,8 @@ let AttackTreeImg, BadgeImg, BuildingImg, LANImg, PhishImg, PropSecretsImg, Cybe
 let center1, center2, center3, center4, center5;
 let screen = 0;
 let widthConstraint, heightConstraint;
-let alphaValue = 0;
-let fadeSpeed = 5;
+let alphaValue = 255;
+let fadeSpeed = -3.5;
 let confirm = false;
 let cancel = false;
 let cardPressed = false;
@@ -345,7 +345,7 @@ function draw() {
     // center image rectangle
     fill(255);
     rectMode(CENTER);
-    rect(width / 2, height / 2 - 10, width / 1.5, height / 1.7, 10);
+    rect(width / 2, height / 2 - 10, width / 1.5, height / 1.8, 10);
 
     // game text
     noStroke();
@@ -513,7 +513,7 @@ function showInstructionScreen() {
   fill(0);
   textFont(font);
   rectMode(CENTER);
-  rect(width / 2, height / 4, 600, height / 10, 10);
+  rect(width / 2, height / 4 + 5, 600, height / 10, 10);
 
   const c = color(48, 116, 180);
 
@@ -522,7 +522,7 @@ function showInstructionScreen() {
   textSize(32); // Font size
   textAlign(CENTER, CENTER); // Text alignment
   textFont(font);
-  text("Instructions", width / 2, height / 4);
+  text("Instructions", width / 2, height / 4 + 5);
 
   // Begin button
   fill(0);
@@ -539,7 +539,7 @@ function showInstructionScreen() {
   fill(color(0));
   textFont(font2); // change font
   let textX = width / 2; // X position for the additional text
-  let textY = height / 2 + 70; // Starting Y position for the additional text
+  let textY = height / 2 + 75; // Starting Y position for the additional text
   let textLeading = 24; // Line spacing
   let textWidth = 550; // Width of the text block
   let additionalText = "Your objective is to correctly place each card into its designated slot.\n\nTo play, click and hold on a card, then drag it to the numbered slot where you think it belongs.\nRelease the mouse to drop the card into place.\n\nRemember, each card has a specific slot it must occupy.\nWhen all cards have been placed, you'll see an option to check your answers.\n\nIf you're correct, you'll have the option to play again.";
@@ -583,7 +583,7 @@ function showScreenWin() {
 
   //Animate alpha value for fading effect
   alphaValue += fadeSpeed;
-  if (alphaValue > 255 || alphaValue < 0) {
+  if (alphaValue >= 255 || alphaValue <= 25) {
     fadeSpeed *= -1; //Reverse the fade direction
   }
 
@@ -631,7 +631,7 @@ function showScreenLose() {
 
   //Animate alpha value for fading effect
   alphaValue += fadeSpeed;
-  if (alphaValue > 255 || alphaValue < 0) {
+  if (alphaValue >= 255 || alphaValue <= 25) {
     fadeSpeed *= -1; //Reverse the fade direction
   }
 

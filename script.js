@@ -323,7 +323,7 @@ function draw() {
 
   if (screen === 0) {
       showStartScreen();
-      gameMusic.loop();
+      //gameMusic.loop();
   }
   else if (screen === 1) {
     showInstructionScreen();
@@ -345,13 +345,13 @@ function draw() {
     // center image rectangle
     fill(255);
     rectMode(CENTER);
-    rect(width / 2, height / 2 - 10, width / 1.5, height / 1.8, 10);
+    rect(width / 2, height / 2 - 10, width / 1.5, height / 1.9, 10);
 
     // game text
     noStroke();
     strokeWeight(1);
     rectMode(CENTER);
-    rect(width / 2, 90, 900, 160, 10);
+    rect(width / 2, 87.5, 900, 160, 10);
 
     // Display text content
     textSize(18);
@@ -539,7 +539,7 @@ function showInstructionScreen() {
   fill(color(0));
   textFont(font2); // change font
   let textX = width / 2; // X position for the additional text
-  let textY = height / 2 + 75; // Starting Y position for the additional text
+  let textY = height / 2 + 85; // Starting Y position for the additional text
   let textLeading = 24; // Line spacing
   let textWidth = 550; // Width of the text block
   let additionalText = "Your objective is to correctly place each card into its designated slot.\n\nTo play, click and hold on a card, then drag it to the numbered slot where you think it belongs.\nRelease the mouse to drop the card into place.\n\nRemember, each card has a specific slot it must occupy.\nWhen all cards have been placed, you'll see an option to check your answers.\n\nIf you're correct, you'll have the option to play again.";

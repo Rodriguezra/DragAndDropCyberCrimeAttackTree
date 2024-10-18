@@ -342,12 +342,13 @@ function draw() {
     scale(1 / (.00016 * width));
 
     // center image rectangle
-    fill(255);
+    fill(200);
     rectMode(CENTER);
     rect(width / 2, height / 2, width - 400, height - 270, 10);
 
     // game text
-    noStroke();
+      noStroke();
+      fill(0);
     strokeWeight(1);
     rectMode(CENTER);
     rect(width / 2, 60, 1000, 100, 10);
@@ -506,7 +507,7 @@ function showInstructionScreen() {
   fill(c); // Blue color
   textSize(32); // Font size
   textAlign(CENTER, CENTER); // Text alignment
-  text("Instructions", width / 2, height / 4);
+  text("Play", width / 2, height / 4);
 
   // Begin button
   fill(0);

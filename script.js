@@ -342,23 +342,22 @@ function draw() {
     scale(1 / (.00016 * width));
 
     // center image rectangle
-    fill(200);
+    fill(255);
     rectMode(CENTER);
-    rect(width / 2, height / 2, width - 400, height - 270, 10);
+    rect(width / 2, height / 2 - 20, width / 1.7, height / 1.7, 10);
 
     // game text
-      noStroke();
-      fill(0);
+    noStroke();
     strokeWeight(1);
     rectMode(CENTER);
-    rect(width / 2, 60, 1000, 100, 10);
+    rect(width / 2, 70, 1000, 120, 10);
 
     // Display text content
     textSize(18);
     noStroke();
     fill(0);
     textAlign(CENTER, TOP); // Text alignment
-    text("This is an example of an attack tree where the objective is to disclose proprietary secrets of an organization that has two buildings with separate Local Area Networks (LANs).\nThe root of the tree is the goal of the attack, while the leaves represent ways to achieve that goal.\nComplete the tree by ordering the answers to identify the missing attacks and what they lead to.\n"
+    text("This is an example of an attack tree where the objective is to disclose proprietary secrets of an organization that has two buildings with separate Local Area Networks (LANs).\n\nThe root of the tree is the goal of the attack, while the leaves represent ways to achieve that goal.\nComplete the tree by ordering the answers to identify the missing attacks and what they lead to.\n"
       , width / 2 - 500, 20, 1000, 360);
 
     // Learn More Button Border
@@ -369,7 +368,7 @@ function draw() {
     // Learn More Button
     noStroke();
     fill(255);
-    rect(width - 150 + 1, height - 54, 138, 38, 10);
+    rect(width - 80, height - 35, 138, 38, 10);
 
     fill(0);
     textSize(16);
@@ -479,7 +478,7 @@ function showStartScreen() {
 
   fill(0);
   textSize(20);
-  text("Instructions", width / 2, height - 100);
+  text("Play", width / 2, height - 100);
 }
 
 
@@ -499,7 +498,7 @@ function showInstructionScreen() {
   fill(0);
   textFont(font);
   rectMode(CENTER);
-  rect(width / 2, height / 4, 600, height / 10, 10);
+  rect(width / 2, height / 5, 600, height / 10, 10);
 
   const c = color(48, 116, 180);
 
@@ -507,7 +506,7 @@ function showInstructionScreen() {
   fill(c); // Blue color
   textSize(32); // Font size
   textAlign(CENTER, CENTER); // Text alignment
-  text("Play", width / 2, height / 4);
+  text("Play", width / 2, height / 5);
 
   // Begin button
   fill(0);
@@ -519,9 +518,8 @@ function showInstructionScreen() {
 
   // instructions text
   textSize(22); // Adjusted font size
-  textAlign(CENTER, TOP); // Adjusted text alignment
+  textAlign(CENTER, CENTER); // Adjusted text alignment
 
-  // Additional text
   fill(color(0));
   textFont(font2); // change font
   let textX = width / 2; // X position for the additional text

@@ -73,7 +73,7 @@ function mousePressed() {
       buttonPress.play();
       if (screen == 3) {
         winJingle.stop();
-        gameMusic.loop();
+        //gameMusic.loop();
       }
       screen = 2;
       Badge.position = createVector(width * .3025, height - 110);
@@ -323,7 +323,7 @@ function draw() {
 
   if (screen === 0) {
       showStartScreen();
-      //gameMusic.loop();
+      gameMusic.loop();
   }
   else if (screen === 1) {
     showInstructionScreen();
@@ -345,7 +345,7 @@ function draw() {
     // center image rectangle
     fill(255);
     rectMode(CENTER);
-    rect(width / 2, height / 2 - 10, width / 1.5, height / 1.85, 10);
+    rect(width / 2, height / 2 - 10, width / 1.5, height / 1.75, 10);
 
     // game text
     noStroke();
@@ -544,7 +544,7 @@ function showInstructionScreen() {
   let textWidth = 525; // Width of the text block
   let additionalText = "Your objective is to correctly place each card into its designated slot.\n\nTo play, click and hold on a card, then drag it to the numbered slot where you think it belongs.\nRelease the mouse to drop the card into place.\n\nRemember, each card has a specific slot it must occupy.\nWhen all cards have been placed, you'll see an option to check your answers.\n\nIf you're correct, you'll have the option to play again.";
 
-  text(additionalText, textX, textY, textWidth, height - textY); // Display additional text with specified width and height
+  text(additionalText, textX, textY, textWidth, height); // Display additional text with specified width and height
 
 
 }

@@ -73,7 +73,7 @@ function mousePressed() {
       buttonPress.play();
       if (screen == 3) {
         winJingle.stop();
-        //gameMusic.loop();
+        gameMusic.loop();
       }
       screen = 2;
       Badge.position = createVector(width * .3025, height - 110);
@@ -323,7 +323,6 @@ function draw() {
 
   if (screen === 0) {
       showStartScreen();
-      gameMusic.loop();
   }
   else if (screen === 1) {
     showInstructionScreen();
@@ -539,9 +538,9 @@ function showInstructionScreen() {
   fill(color(0));
   textFont(font2); // change font
   let textX = width / 2; // X position for the additional text
-  let textY = height / 2 + 90; // Starting Y position for the additional text
+  let textY = height / 2 + 87.5; // Starting Y position for the additional text
   let textLeading = 24; // Line spacing
-  let textWidth = 525; // Width of the text block
+  let textWidth = 580; // Width of the text block
   let additionalText = "Your objective is to correctly place each card into its designated slot.\n\nTo play, click and hold on a card, then drag it to the numbered slot where you think it belongs.\nRelease the mouse to drop the card into place.\n\nRemember, each card has a specific slot it must occupy.\nWhen all cards have been placed, you'll see an option to check your answers.\n\nIf you're correct, you'll have the option to play again.";
 
   text(additionalText, textX, textY, textWidth, height); // Display additional text with specified width and height
@@ -583,7 +582,7 @@ function showScreenWin() {
 
   //Animate alpha value for fading effect
   alphaValue += fadeSpeed;
-  if (alphaValue >= 255 || alphaValue <= 25) {
+  if (alphaValue >= 255 || alphaValue <= 75) {
     fadeSpeed *= -1; //Reverse the fade direction
   }
 
@@ -631,7 +630,7 @@ function showScreenLose() {
 
   //Animate alpha value for fading effect
   alphaValue += fadeSpeed;
-  if (alphaValue >= 255 || alphaValue <= 25) {
+  if (alphaValue >= 255 || alphaValue <= 75) {
     fadeSpeed *= -1; //Reverse the fade direction
   }
 

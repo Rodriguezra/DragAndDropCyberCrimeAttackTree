@@ -327,11 +327,14 @@ function draw() {
   else if (screen === 1) {
     showInstructionScreen();
   }
-  else if (screen === 2) {
+  else if (screen === 2) { // game screen
     playOnce = true;
+
+    // set background
     const c = color(48, 116, 180);
     background(c);
 
+    // load background image
     let imgX = 0;
     let imgY = 0;
     scale(.00016 * width);
@@ -347,8 +350,9 @@ function draw() {
     rect(width / 2, 60, 1000, 100, 10);
     rectMode(CORNER);
     rect(200, 120, width - 400, height - 270, 10);
+
     // Display text content
-    textSize(15);
+    textSize(18);
     noStroke();
     fill(0);
     textAlign(CENTER, TOP); // Text alignment
@@ -359,10 +363,12 @@ function draw() {
     stroke(255);
     strokeWeight(2);
     fill(255);
+
     // Learn More Button
     noStroke();
     fill(255);
     rect(width - 150 + 1, height - 54, 138, 38, 10);
+
     fill(0);
     textSize(16);
     textAlign(CENTER, CENTER);
@@ -510,17 +516,17 @@ function showInstructionScreen() {
   text("Begin", width / 2, height - 100);
 
   // instructions text
-  textSize(18); // Adjusted font size
+  textSize(22); // Adjusted font size
   textAlign(CENTER, CENTER); // Adjusted text alignment
 
   // Additional text
   fill(color(0));
   textFont(font2); // change font
   let textX = width / 2; // X position for the additional text
-  let textY = height / 2; // Starting Y position for the additional text
+  let textY = height / 1.5; // Starting Y position for the additional text
   let textLeading = 24; // Line spacing
-  let textWidth = 575; // Width of the text block
-  let additionalText = "Your objective is to correctly place each card into its designated slot.\nTo play, click and hold on a card, then drag it to the numbered slot where you think it belongs.\nRelease the mouse to drop the card into place.\n\nRemember, each card has a specific slot it must occupy.\nWhen all cards have been placed, you'll see an option to check your answers.\nIf you're correct, you'll have the option to play again.";
+  let textWidth = 550; // Width of the text block
+  let additionalText = "Your objective is to correctly place each card into its designated slot.\n\nTo play, click and hold on a card, then drag it to the numbered slot where you think it belongs.\nRelease the mouse to drop the card into place.\n\nRemember, each card has a specific slot it must occupy.\nWhen all cards have been placed, you'll see an option to check your answers.\n\nIf you're correct, you'll have the option to play again.";
 
   text(additionalText, textX, textY, textWidth, height - textY); // Display additional text with specified width and height
 

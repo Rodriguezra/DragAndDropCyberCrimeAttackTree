@@ -217,7 +217,7 @@ function checkIfConfirm() { //submit screen appears if all 5 cards have been sna
 
 function preload() { //load fonts, images and sounds
   font = loadFont('assets/AttackTree/1/MechaRx20Regular-j9Zy9.otf');
-  font2 = loadFont('assets/AttackTree/1/ChargeVector-PKldB.ttf');
+  font2 = loadFont('assets/AttackTree/1/Metropolis-Regular.otf');
   AttackTreeImg = loadImage('assets/AttackTree/1/Attacktree.png');
   BadgeImg = loadImage('assets/AttackTree/1/Badge.png');
   BuildingImg = loadImage('assets/AttackTree/1/Building.png');
@@ -352,7 +352,7 @@ function draw() {
     noStroke();
     fill(0);
     textAlign(CENTER, TOP); // Text alignment
-    text("This is an example of an attack tree where the objective is to disclose proprietary secrets of an organization that has two buildings with separate Local Area Networks (LANs). The root of the tree is the goal of the attack, while the leaves represent ways to achieve that goal. Complete the tree by ordering the answers to identify the missing attacks and what they lead to.\n"
+    text("This is an example of an attack tree where the objective is to disclose proprietary secrets of an organization that has two buildings with separate Local Area Networks (LANs).\nThe root of the tree is the goal of the attack, while the leaves represent ways to achieve that goal.\nComplete the tree by ordering the answers to identify the missing attacks and what they lead to.\n"
       , width / 2 - 500, 20, 1000, 360);
 
     // Learn More Button Border
@@ -415,6 +415,7 @@ function draw() {
 }
 
 function windowResized() { //Adjusts size of canvas and screen elements based on screen size 
+    /*
   resizeCanvas(windowWidth, windowHeight);
   AttackTree.scale = .00035 * width;
   AttackTree.pos = { x: width / 2, y: height / 2 - 10 };
@@ -433,6 +434,7 @@ function windowResized() { //Adjusts size of canvas and screen elements based on
   center3 = createVector(width * .49, height * .371);
   center4 = createVector(width * .49, height * .635);
   center5 = createVector(width * .3025, height * .502);
+  */
 }
 
 function showStartScreen() {
@@ -456,7 +458,7 @@ function showStartScreen() {
   textSize(60);
   textFont(font);
   textAlign(CENTER, CENTER); // Text alignment
-  text("Attack Tree\n\n", width / 2, height / 4.5);
+  text("Attack Tree", width / 2, height / 4.5);
 
   // Instructions button
   fill(255);
@@ -491,7 +493,7 @@ function showInstructionScreen() {
   fill(c); // Blue color
   textSize(32); // Font size
   textAlign(CENTER, CENTER); // Text alignment
-  text("Instructions\n\n", width / 2, height * .36);
+  text("Instructions", width / 2, height * .36);
 
   // Begin button
   fill(0);
@@ -510,7 +512,7 @@ function showInstructionScreen() {
   let textY = height / 2 - 60; // Starting Y position for the additional text
   let textLeading = 24; // Line spacing
   let textWidth = 575; // Width of the text block
-  let additionalText = "Your objective is to correctly place each card into its designated slot. To play, click and hold on a card, then drag it to the numbered slot where you think it belongs. Release the mouse to drop the card into place.\n\nRemember, each card has a specific slot it must occupy. When all cards have been placed, you'll see an option to check your answers. If you're correct, you'll have the option to play again.";
+  let additionalText = "Your objective is to correctly place each card into its designated slot.\nTo play, click and hold on a card, then drag it to the numbered slot where you think it belongs.\nRelease the mouse to drop the card into place.\n\nRemember, each card has a specific slot it must occupy.\nWhen all cards have been placed, you'll see an option to check your answers.\nIf you're correct, you'll have the option to play again.";
 
   text(additionalText, textX, textY, textWidth, height - textY); // Display additional text with specified width and height
 

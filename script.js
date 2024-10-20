@@ -688,6 +688,7 @@ function volumeControl() {
 
     // button images (need to add actual images)
     textFont(font);
+    textAlign(CENTER, CENTER);
 
     if (muted) {
         fill(0);

@@ -11,10 +11,11 @@ let buttonPress, cardPress, cardSnap, gameMusic, winJingle;
 let AttackTree, Badge, Building, LAN, Phish, PropSecrets, Cybercrime, winComp, loseComp, Chip;
 let AttackTreeImg, BadgeImg, BuildingImg, LANImg, PhishImg, PropSecretsImg, CybercrimeImg, winCompImg, loseCompImg, ChipImg;
 let center1, center2, center3, center4, center5;
+let slider, sliderY, volume0Img, volume1Img, gameAmp, effectAmp, muted, prevAmp;
 let screen = 0;
 let widthConstraint, heightConstraint;
 let alphaValue = 255;
-let fadeSpeed = -2;
+let fadeSpeed = -1.5;
 let confirm = false;
 let cancel = false;
 let cardPressed = false;
@@ -124,6 +125,10 @@ function mousePressed() {
       window.open('https://www.cisa.gov/sites/default/files/2023-01/MitigationsForVulnerabilitiesCSNetsISA_S508C.pdf');
     }
   }
+
+  // mute button pressed
+  let buttonCenterDist = dist(mouseX, mouseY, 40, height - 40);
+  if (buttonCenterDist < 25) { muted = !muted; }
 }
 
 
@@ -233,19 +238,21 @@ function preload() { //load fonts, images and sounds
   cardSnap = loadSound('assets/AttackTree/1/cardSnap.wav');
   gameMusic = loadSound('assets/AttackTree/1/gameMusic.wav');
   winJingle = loadSound('assets/AttackTree/1/winJingle.wav');
+  //volume0Img = loadImage('assets/AttackTree/1/volume0.png');
+  //volume1Img = loadImage('assets/AttackTree/1/volume1.png');
 }
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
+
+  soundFormats('wav');
+  gameMusic.loop();
 
   center1 = createVector(width * .698, height * .479);
   center2 = createVector(width * .698, height * .652);
   center3 = createVector(width * .49, height * .371);
   center4 = createVector(width * .49, height * .635);
   center5 = createVector(width * .3025, height * .502);
-
-  soundFormats('wav');
-  gameMusic.loop();
 
   AttackTree = new Sprite(width / 2 - 80, 315);
   AttackTree.addImage(AttackTreeImg);
@@ -313,6 +320,20 @@ function setup() {
   loseComp.pos = { x: -400, y: -400 };
   Chip.pos = { x: -400, y: -400 };
 
+  // adjust volumes
+  gameAmp = 0.15;
+  effectAmp = 0.5;
+
+  gameMusic.amp(gameAmp);
+  buttonPress.amp(effectAmp);
+  cardPress.amp(effectAmp);
+  cardSnap.amp(effectAmp);
+  winJingle.amp(effectAmp);
+
+  // set up volume control
+  slider = createSlider(0, 1, 1, 0);
+  muted = false;
+  prevAmp = 1;
 }
 
 
@@ -388,7 +409,7 @@ function draw() {
     for (let card of cards) {
       handleDragging(card);
       snapToCenter(card);
-    }
+      }
   }
 
   // if all blanks are filled, ask to submit
@@ -433,6 +454,8 @@ function draw() {
   else if (screen == 4) {
     showScreenLose();
   }
+
+  volumeControl();
 }
 
 function windowResized() { //Adjusts size of canvas and screen elements based on screen size 
@@ -484,7 +507,7 @@ function showStartScreen() {
   textAlign(CENTER, CENTER); // Text alignment
   text("Attack Tree", width / 2, height / 8);
 
-  // Instructions button
+  // Play button
   fill(255);
   noStroke();
   rect(width / 2, height - 100, 200, 40, 10);
@@ -537,10 +560,10 @@ function showInstructionScreen() {
   fill(color(0));
   textFont(font2); // change font
   let textX = width / 2; // X position for the additional text
-  let textY = height / 2 + 87.5; // Starting Y position for the additional text
+  let textY = height / 2 + 85; // Starting Y position for the additional text
   let textLeading = 24; // Line spacing
-  let textWidth = 480; // Width of the text block
-  let additionalText = "Your objective is to correctly place each card into its designated slot.\n\nTo play, click and hold on a card, then drag it to the numbered slot where you think it belongs.\n\nRelease the mouse to drop the card into place.\n\nWhen all cards have been placed, you'll see an option to check your answers.\n\nIf you're correct, you'll have the option to play again.";
+  let textWidth = 465; // Width of the text block
+  let additionalText = "Your objective is to correctly place each card into its designated slot.\n\nTo play, click and hold on a card, then drag it to the numbered slot where you think it belongs.\n\nRelease the mouse to drop the card into place.\n\nWhen all cards have been placed, you'll see an option to check your answers.\n\nIf you're correct, you'll have the option to \nplay again.";
 
   text(additionalText, textX, textY, textWidth, height); // Display additional text with specified width and height
 
@@ -548,8 +571,12 @@ function showInstructionScreen() {
 }
 
 function showScreenWin() {
-  gameMusic.stop();
-  winJingle.play();
+  if (playOnce) {
+    gameMusic.stop();
+    winJingle.play();
+  }
+
+  playOnce = false;
 
   // set background
   setCardsoffScreen();
@@ -572,6 +599,7 @@ function showScreenWin() {
   let imgY2 = winComp.height - 55;
   scale(.00095 * width);
   image(winCompImg, imgX2, imgY2);
+  scale(1 / (.00095 * width));
 
   // win title text
   fill(255, alphaValue);
@@ -621,6 +649,7 @@ function showScreenLose() {
   let imgY2 = loseComp.height - 20;
   scale(.001 * width);
   image(loseCompImg, imgX2, imgY2);
+  scale(1 / (.001 * width));
 
   //Set title text
   fill(255, alphaValue);
@@ -646,4 +675,70 @@ function showScreenLose() {
   fill(0);
   textSize(20);
   text("Restart", width / 2, height - 100);
+}
+
+
+function volumeControl() {
+    // mute button
+    fill(0);
+    circle(40, height - 40, 50);
+
+    fill(225);
+    circle(40, height - 40, 44);
+
+    // button images (need to add actual images)
+    textFont(font);
+
+    if (muted) {
+        fill(0);
+        textSize(16);
+        text("x", 40, height - 40);
+    }
+    else {
+        fill(0);
+        textSize(20);
+        text("<<", 40, height - 40);
+    }
+
+    // volume slider
+    sliderY = height - 50;
+
+    slider.position(90, sliderY);
+
+    fill(0);
+    circle(95, sliderY + 10, 30);
+    circle(220, sliderY + 10, 30);
+    rectMode(CENTER);
+    rect(157.5, sliderY + 10, 125, 30);
+
+    fill(225);
+    circle(95, sliderY + 10, 24);
+    circle(220, sliderY + 10, 24);
+    rectMode(CENTER);
+    rect(157.5, sliderY + 10, 125, 24);
+
+    // slider logic
+    let currAmp = slider.value();
+
+    // if the slider is moved while muted, unmute
+    if (muted && (prevAmp != currAmp)) { muted = false; }
+
+    if (currAmp <= 0) { muted = true; }
+
+    if (!muted) {
+        gameMusic.amp(gameAmp * currAmp);
+        buttonPress.amp(effectAmp * currAmp);
+        cardPress.amp(effectAmp * currAmp);
+        cardSnap.amp(effectAmp * currAmp);
+        winJingle.amp(effectAmp * currAmp);
+    }
+    else {
+        gameMusic.amp(0);
+        buttonPress.amp(0);
+        cardPress.amp(0);
+        cardSnap.amp(0);
+        winJingle.amp(0);
+    }
+
+    prevAmp = currAmp;
 }

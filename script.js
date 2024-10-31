@@ -238,8 +238,8 @@ function preload() { //load fonts, images and sounds
   cardSnap = loadSound('assets/AttackTree/1/cardSnap.wav');
   gameMusic = loadSound('assets/AttackTree/1/gameMusic.wav');
   winJingle = loadSound('assets/AttackTree/1/winJingle.wav');
-  //volume0Img = loadImage('assets/AttackTree/1/volume0.png');
-  //volume1Img = loadImage('assets/AttackTree/1/volume1.png');
+  volume0Img = loadImage('assets/AttackTree/1/volume0.png');
+  volume1Img = loadImage('assets/AttackTree/1/volume1.png');
 }
 
 function setup() {
@@ -334,6 +334,7 @@ function setup() {
   slider = createSlider(0, 1, 1, 0);
   muted = false;
   prevAmp = 1;
+  sliderY = height + 10;
 }
 
 
@@ -683,27 +684,35 @@ function volumeControl() {
     fill(0);
     circle(40, height - 40, 50);
 
-    fill(225);
+    fill(235);
     circle(40, height - 40, 44);
 
-    // button images (need to add actual images)
-    textFont(font);
-    textAlign(CENTER, CENTER);
+    // button images
+    let x = 990;
+    let y = 34250;
 
     if (muted) {
-        fill(0);
-        textSize(16);
-        text("x", 40, height - 40);
+        scale(.000013 * width);
+        image(volume0Img, x, y);
+        scale(1 / (.000013 * width));
     }
     else {
-        fill(0);
-        textSize(20);
-        text("<<", 40, height - 40);
+        scale(.000013 * width);
+        image(volume1Img, x, y);
+        scale(1 / (.000013 * width));
+    }
+
+    // volume slider movement
+    let buttonCenterDist = dist(mouseX, mouseY, 40, height - 40);
+
+    if (sliderY > height - 50 && mouseX < 250 && mouseY > height - 80) { // mouse in general area
+        sliderY -= 5;
+    }
+    else if (sliderY <= height + 10 && (mouseX >= 250 || mouseY <= height - 80)) { // mouse outside general area
+        sliderY += 5;
     }
 
     // volume slider
-    sliderY = height - 50;
-
     slider.position(90, sliderY);
 
     fill(0);
@@ -712,13 +721,13 @@ function volumeControl() {
     rectMode(CENTER);
     rect(157.5, sliderY + 10, 125, 30);
 
-    fill(225);
+    fill(235);
     circle(95, sliderY + 10, 24);
     circle(220, sliderY + 10, 24);
     rectMode(CENTER);
     rect(157.5, sliderY + 10, 125, 24);
 
-    // slider logic
+    // slider volume logic
     let currAmp = slider.value();
 
     // if the slider is moved while muted, unmute

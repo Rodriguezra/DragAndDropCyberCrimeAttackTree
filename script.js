@@ -344,73 +344,13 @@ function draw() {
   background("white");
 
   if (screen === 0) {
-      showStartScreen();
+    showStartScreen();
   }
   else if (screen === 1) {
     showInstructionScreen();
   }
   else if (screen === 2) { // game screen
-    playOnce = true;
-
-    // set background
-    const c = color(48, 116, 180);
-    background(c);
-
-    // load background image
-    let imgX = 0;
-    let imgY = 0;
-    scale(.00016 * width);
-    image(ChipImg, imgX, imgY);
-    scale(1 / (.00016 * width));
-
-    // center image rectangle
-    fill(255);
-    rectMode(CENTER);
-    rect(width / 2, height / 2 - 10, width / 1.5, height / 1.75, 10);
-
-    // game text
-    noStroke();
-    strokeWeight(1);
-    rectMode(CENTER);
-    rect(width / 2, 87.5, 900, 160, 10);
-
-    // Display text content
-    textSize(18);
-    noStroke();
-    fill(0);
-    textAlign(CENTER, CENTER); // Text alignment
-    textFont(font2);
-    text("This is an example of an attack tree where the objective is to disclose proprietary secrets of an organization that has two buildings with separate Local Area Networks (LANs).\n\nThe root of the tree is the goal of the attack, while the leaves represent ways to achieve that goal.\n\nComplete the tree by ordering the answers to identify the missing attacks and what they lead to.\n"
-      , width / 2, 100, 900, 360);
-
-    // Learn More Button Border
-    stroke(255);
-    strokeWeight(2);
-    fill(255);
-
-    // Learn More Button
-    noStroke();
-    fill(255);
-    rect(width - 80, height - 35, 138, 38, 10);
-
-    fill(0);
-    textSize(16);
-    textAlign(CENTER, CENTER);
-    textFont(font);
-    text("Learn More", width - 80, height - 35);  // Learn More Button Text
-
-    fill(255);
-    noStroke();
-
-    fill(0);
-    noStroke();
-    textSize(24);
-    textAlign(CENTER);
-
-    for (let card of cards) {
-      handleDragging(card);
-      snapToCenter(card);
-      }
+    showGameScreen();
   }
 
   // if all blanks are filled, ask to submit
@@ -518,7 +458,6 @@ function showStartScreen() {
   text("Play", width / 2, height - 100);
 }
 
-
 function showInstructionScreen() {
   // set background
   setCardsoffScreen();
@@ -567,8 +506,71 @@ function showInstructionScreen() {
   let additionalText = "Your objective is to correctly place each card into its designated slot.\n\nTo play, click and hold on a card, then drag it to the numbered slot where you think it belongs.\n\nRelease the mouse to drop the card into place.\n\nWhen all cards have been placed, you'll see an option to check your answers.\n\nIf you're correct, you'll have the option to \nplay again.";
 
   text(additionalText, textX, textY, textWidth, height); // Display additional text with specified width and height
+}
 
 
+function showGameScreen() {
+    playOnce = true;
+
+    // set background
+    const c = color(48, 116, 180);
+    background(c);
+
+    // load background image
+    let imgX = 0;
+    let imgY = 0;
+    scale(.00016 * width);
+    image(ChipImg, imgX, imgY);
+    scale(1 / (.00016 * width));
+
+    // center image rectangle
+    fill(255);
+    rectMode(CENTER);
+    rect(width / 2, height / 2 - 10, width / 1.5, height / 1.75, 10);
+
+    // game text
+    noStroke();
+    strokeWeight(1);
+    rectMode(CENTER);
+    rect(width / 2, 87.5, 900, 160, 10);
+
+    // Display text content
+    textSize(18);
+    noStroke();
+    fill(0);
+    textAlign(CENTER, CENTER); // Text alignment
+    textFont(font2);
+    text("This is an example of an attack tree where the objective is to disclose proprietary secrets of an organization that has two buildings with separate Local Area Networks (LANs).\n\nThe root of the tree is the goal of the attack, while the leaves represent ways to achieve that goal.\n\nComplete the tree by ordering the answers to identify the missing attacks and what they lead to.\n"
+        , width / 2, 100, 900, 360);
+
+    // Learn More Button Border
+    stroke(255);
+    strokeWeight(2);
+    fill(255);
+
+    // Learn More Button
+    noStroke();
+    fill(255);
+    rect(width - 80, height - 35, 138, 38, 10);
+
+    fill(0);
+    textSize(16);
+    textAlign(CENTER, CENTER);
+    textFont(font);
+    text("Learn More", width - 80, height - 35);  // Learn More Button Text
+
+    fill(255);
+    noStroke();
+
+    fill(0);
+    noStroke();
+    textSize(24);
+    textAlign(CENTER);
+
+    for (let card of cards) {
+        handleDragging(card);
+        snapToCenter(card);
+    }
 }
 
 function showScreenWin() {

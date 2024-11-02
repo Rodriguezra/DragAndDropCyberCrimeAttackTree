@@ -238,8 +238,8 @@ function preload() { //load fonts, images and sounds
   cardSnap = loadSound('assets/AttackTree/1/cardSnap.wav');
   gameMusic = loadSound('assets/AttackTree/1/gameMusic.wav');
   winJingle = loadSound('assets/AttackTree/1/winJingle.wav');
-  volume0Img = loadImage('assets/AttackTree/1/volume0.png');
-  volume1Img = loadImage('assets/AttackTree/1/volume1.png');
+  //volume0Img = loadImage('assets/AttackTree/1/volume0.png');
+  //volume1Img = loadImage('assets/AttackTree/1/volume1.png');
 }
 
 function setup() {
@@ -693,6 +693,7 @@ function volumeControl() {
     let x = 990;
     let y = 34250;
 
+    /*
     if (muted) {
         scale(.000013 * width);
         image(volume0Img, x, y);
@@ -703,6 +704,7 @@ function volumeControl() {
         image(volume1Img, x, y);
         scale(1 / (.000013 * width));
     }
+    */
 
     // volume slider movement
     let buttonCenterDist = dist(mouseX, mouseY, 40, height - 40);
